@@ -17,11 +17,6 @@ except FileNotFoundError:
     joblib.dump(model, 'model/placeholder_model.pkl')
 
 # ---------- routes ----------
-from sklearn.linear_model import LinearRegression
-import numpy as np
-
-app = Flask(__name__)
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -37,8 +32,6 @@ def predict():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
 @app.route('/run-model', methods=['POST'])
 def run_model():
     data = request.get_json()
@@ -46,6 +39,7 @@ def run_model():
     param2 = float(data.get('param2', 0.5))
 
     # Create a simple placeholder model with two features
+    from sklearn.linear_model import LinearRegression
     X = np.array([[1, 1], [2, 2], [3, 3], [4, 4]])
     y = np.array([2, 4, 5, 4])
     model = LinearRegression()
@@ -58,4 +52,4 @@ def run_model():
     return jsonify({'prediction': prediction})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

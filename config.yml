@@ -1,0 +1,29 @@
+runcharts:
+  - title: API Response Time
+    rate-ms: 500
+    scale: 2
+    legend:
+      enabled: true
+      details: true
+    items:
+      - label: Predict
+        sample: |
+          curl -o /dev/null -s -w '%{time_total}' \
+            -X POST http://localhost:5000/predict \
+            -H 'Content-Type: application/json' \
+            -d '{"features": [5.1, 3.5, 1.4, 0.2]}'
+        color: 178
+
+sparklines:
+  - title: CPU Usage
+    rate-ms: 200
+    scale: 0
+    sample: ps -A -o %cpu | awk '{s+=$1} END {print s}'
+  - title: Free Memory (Linux)
+    rate-ms: 200
+    scale: 0
+    sample: free -m | awk 'NR==2{printf "%.2f", $4}'
+  - title: Free Memory (macOS)
+    rate-ms: 200
+    scale: 0
+    sample: memory_pressure | grep 'Pages free' | awk '{print $3}'
