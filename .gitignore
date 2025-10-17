@@ -1,3 +1,4 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -7,3 +8,14 @@ venv/
 .venv/
 model/*.pkl
 .DS_Store
+.Python
+env/
+venv/
+pip-selfcheck.json
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
