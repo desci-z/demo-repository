@@ -3,6 +3,11 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+env/
+venv/
+.venv/
+model/*.pkl
+.DS_Store
 .Python
 env/
 venv/
